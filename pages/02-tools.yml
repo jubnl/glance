@@ -1,0 +1,71 @@
+- name: Tools
+  width: wide
+  desktop-navigation-width: wide
+
+  head-widgets:
+    - type: html
+      hide-header: true
+      source: |
+        <div class="margin-bottom-15">
+          <p class="size-h2 margin-bottom-5">Tools & Public Services</p>
+          <p class="size-base">
+            Collection of public tools and utilities. Use the shortcuts below to
+            access code hosting, secret sharing and future services.
+          </p>
+        </div>
+
+    - type: clock
+      hour-format: 24h
+
+  columns:
+    # LEFT COLUMN – ideas / notes
+    - size: small
+      widgets:
+        - type: monitor
+          title: Public services status
+          cache: 1m
+          style: compact
+          sites:
+            - title: Forgejo
+              url: https://git.jubnl.ch
+              icon: si:forgejo
+            - title: Password Pusher
+              url: https://pwpush.jubnl.ch
+              icon: si:lock
+
+    # CENTER COLUMN – main tools + search
+    - size: full
+      widgets:
+
+        - type: bookmarks
+          title: Tools
+          groups:
+
+            - title: Code Hosting
+              color: 210 60 50
+              links:
+                - title: Forgejo (Git)
+                  url: https://git.jubnl.ch
+                  icon: si:forgejo
+
+            - title: Secret Sharing
+              color: 45 70 50
+              links:
+                - title: Password Pusher
+                  url: https://pwpush.jubnl.ch
+                  icon: si:lock
+
+        - type: search
+          title: Tool search
+          search-engine: duckduckgo
+          placeholder: Search in docs, repos or the web…
+          bangs:
+            - title: Forgejo repos
+              shortcut: "!git"
+              url: "https://git.jubnl.ch/explore/repos?q={QUERY}"
+            - title: Forgejo issues
+              shortcut: "!gitissues"
+              url: "https://git.jubnl.ch/issues?q={QUERY}"
+            - title: Web
+              shortcut: "!ddg"
+              url: "https://duckduckgo.com/?q={QUERY}"

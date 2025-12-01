@@ -1,0 +1,99 @@
+- name: Hosting
+  slug: hosting
+  width: default
+  desktop-navigation-width: default
+  center-vertically: true
+
+  head-widgets:
+    - type: html
+      hide-header: true
+      source: |
+        <section style="max-width: 720px; margin: 0 auto 32px auto; text-align: center;">
+          <p class="size-h2 margin-bottom-5">Website Hosting on jubnl.ch</p>
+          <p class="size-base margin-bottom-5">
+            I offer small-scale hosting for lightweight websites on my infrastructure.
+          </p>
+          <p class="size-base">
+            If you're interested, contact me at
+            <a class="color-primary" href="mailto:admin@jubnl.ch">admin@jubnl.ch</a>.
+          </p>
+        </section>
+
+  columns:
+    - size: full
+      widgets:
+        - type: html
+          hide-header: true
+          source: |
+            <section
+              style="
+                max-width: 960px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 32px;
+              "
+            >
+              <div>
+                <p class="size-h4 margin-bottom-5">What I host</p>
+                <ul class="list list-gap-6">
+                  <li>Lightweight sites only (no heavy Java application backends).</li>
+                  <li>Typical use cases: personal pages, blogs, portfolios, small business sites, documentation, simple APIs.</li>
+                  <li>Databases can be arranged if your site needs one (e.g. for a CMS).</li>
+                </ul>
+              </div>
+
+              <div>
+                <p class="size-h4 margin-bottom-5">Pricing</p>
+                <ul class="list list-gap-6">
+                  <li>Price depends on the site's requirements (resources, complexity, uptime needs).</li>
+                  <li>Typical range: <strong>6–15 CHF per month</strong>.</li>
+                  <li>Exact price is agreed after reviewing your site and requirements.</li>
+                </ul>
+
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 20px;">
+
+                  <p class="size-h4 margin-bottom-5">How to request hosting</p>
+              
+                  <ol class="list list-gap-4">
+                    <li>
+                      Send an email to
+                      <a class="color-primary" href="mailto:admin@jubnl.ch"><strong>admin@jubnl.ch</strong></a>.
+                    </li>
+              
+                    <li>
+                      In the email, include:
+                      <ul class="list list-gap-3 margin-top-3">
+                        <li>Short description of your site and what it does.</li>
+                        <li>Tech stack you use (static site, PHP, Node, etc.).</li>
+                        <li>Whether you need a database and which type.</li>
+                        <li>Preferred domain (jubnl.ch subdomain or your own domain).</li>
+                        <li>Rough estimate of monthly visitors.</li>
+                      </ul>
+                    </li>
+              
+                    <li>
+                      I will review the details, confirm that the site fits the
+                      "lightweight" requirement and propose a price within the
+                      6–15 CHF/month range.
+                    </li>
+                  </ol>
+
+                </div>
+              </div>
+
+              <div>
+                <p class="size-h4 margin-bottom-5">Domains</p>
+                <ul class="list list-gap-6">
+                  <li>
+                    I can provide a subdomain under <strong>jubnl.ch</strong>
+                    (for example: <code>yourproject.jubnl.ch</code>).
+                  </li>
+                  <li>
+                    You can also bring your own domain, but its
+                    <strong>nameservers must be on Cloudflare</strong>.
+                    This is a strict requirement.
+                  </li>
+                </ul>
+              </div>
+            </section>

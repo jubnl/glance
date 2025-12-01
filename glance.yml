@@ -1,0 +1,4 @@
+pages:
+  - $include: pages/01-media.yml
+  - $include: pages/02-tools.yml
+  - $include: pages/03-hosting.yml
