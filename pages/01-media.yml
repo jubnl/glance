@@ -1,6 +1,6 @@
 - name: Media
-  width: wide
-  desktop-navigation-width: wide
+  width: default
+  desktop-navigation-width: default
 
   head-widgets:
     - type: html
