@@ -1,98 +1,95 @@
 - name: Git Access
-    slug: git
-    width: slim
-    columns:
-      - size: full
-        widgets:
-          - type: html
-            title: Git Access Instructions
-            source: |
-              <h2>Git Access to <span class="color-primary">git.jubnl.ch</span></h2>
-              <p>This page explains how to connect to Forgejo either via <strong>SSH over Cloudflare Zero Trust</strong> or <strong>HTTPS-only Git</strong>.</p>
+  slug: git
+  width: slim
+  columns:
+    - size: full
+      widgets:
+        - type: html
+          title: Git Access Instructions
+          source: |
+            <h2>Git Access to <span class="color-primary">git.jubnl.ch</span></h2>
+            <p>This page explains how to connect to Forgejo either via <strong>SSH over Cloudflare Zero Trust</strong> or <strong>HTTPS-only Git</strong>.</p>
 
-              <hr class="margin-block-15">
+            <hr class="margin-block-15">
 
-              <h3 class="size-h3">🔐 SSH Access (recommended)</h3>
+            <h3 class="size-h3">🔐 SSH Access (recommended)</h3>
 
-              <p>SSH access goes through Cloudflare Zero Trust for identity verification and cannot be accessed publicly.</p>
+            <p>SSH access goes through Cloudflare Zero Trust for identity verification and cannot be accessed publicly.</p>
 
-              <h4 class="size-h4">1. Install Cloudflared</h4>
-              <p>Download and install Cloudflare's client:</p>
-              <p><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/" class="color-primary">Cloudflared Installation</a></p>
+            <h4 class="size-h4">1. Install Cloudflared</h4>
+            <p>Download and install Cloudflare's client:</p>
+            <p><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/" class="color-primary">Cloudflared Installation</a></p>
 
-              <h4 class="size-h4">2. Authenticate your device</h4>
-              <pre><code>cloudflared login</code></pre>
-              <p>A browser will open; sign in using the email address that Julien has authorized for SSH access.</p>
+            <h4 class="size-h4">2. Authenticate your device</h4>
+            <pre><code>cloudflared login</code></pre>
+            <p>A browser will open; sign in using the email address I authorized for SSH access.</p>
 
-              <h4 class="size-h4">3. Create an SSH key</h4>
-              <pre><code>ssh-keygen -t ed25519 -f ~/.ssh/ssh-git</code></pre>
+            <h4 class="size-h4">3. Create an SSH key</h4>
+            <pre><code>ssh-keygen -t ed25519 -f ~/.ssh/ssh-git</code></pre>
 
-              <h4 class="size-h4">4. Add your public key in Forgejo</h4>
-              <p>Go to:</p>
-              <p><a href="https://git.jubnl.ch/user/settings/keys" class="color-primary">Forgejo → Settings → SSH Keys</a></p>
-              <p>Paste the contents of <code>~/.ssh/ssh-git.pub</code>.</p>
+            <h4 class="size-h4">4. Add your public key in Forgejo</h4>
+            <p>Go to:</p>
+            <p><a href="https://git.jubnl.ch/user/settings/keys" class="color-primary">Forgejo → Settings → SSH Keys</a></p>
+            <p>Paste the contents of <code>~/.ssh/ssh-git.pub</code>.</p>
 
-              <h4 class="size-h4">5. Configure your SSH client</h4>
-              <p>Edit <code>~/.ssh/config</code> and add:</p>
-              <pre><code>Host ssh-git.jubnl.ch
-                ProxyCommand "C:\Program Files (x86)\cloudflared\cloudflared.exe" access ssh --hostname %h
-                IdentityFile ~/.ssh/ssh-git
-                User git
-                IdentitiesOnly yes
-              </code></pre>
-              
-              <h4 class="size-h4">6. Clone repositories using SSH</h4>
-              <pre><code>git clone ssh://git@ssh-git.jubnl.ch/USER/REPO.git</code></pre>
+            <h4 class="size-h4">5. Configure your SSH client</h4>
+            <p>Add this to your <code>~/.ssh/config</code> file:</p>
+            <pre><code>Host ssh-git.jubnl.ch&#10;&#9;ProxyCommand cloudflared access ssh --hostname %h&#10;&#9;IdentityFile ~/.ssh/ssh-git&#10;&#9;User git&#10;&#9;IdentitiesOnly yes</code></pre>
 
-            <p class="color-subdue">Note: Seeing a message like “Forgejo does not provide shell access” is normal — SSH is only used for Git operations.</p>
-              
-              <hr class="margin-block-15">
-              
-              <h3 class="size-h3">🌐 HTTPS-Only Git Access (no SSH)</h3>
-              
-              <p>If you prefer not to use Cloudflared or SSH, you can clone repos over HTTPS.</p>
-              
-              <h4 class="size-h4">1. Use the HTTPS Clone URL from Forgejo</h4>
-              <pre><code>https://git.jubnl.ch/USER/REPO.git</code></pre>
-              
-              <h4 class="size-h4">2. Authenticate using your Forgejo username/password</h4>
-              <p>Forgejo will prompt you for credentials. If you enabled 2FA, use a token or app password.</p>
-              
-              <h4 class="size-h4">3. Example</h4>
-              <pre><code>git clone https://git.jubnl.ch/example/project.git</code></pre>
-              
-              <hr class="margin-block-15">
-              
-              <h3 class="size-h3">🛠 Troubleshooting SSH</h3>
-              
-              <h4 class="size-h4">Cloudflared login doesn’t open a browser</h4>
-              <ul class="list list-gap-10">
+            <h4 class="size-h4">6. Clone repositories using SSH</h4>
+            <pre><code>git clone ssh://git@ssh-git.jubnl.ch/USER/REPO.git</code></pre>
+
+            <p class="color-subdue">
+              Note: Seeing a message like “Forgejo does not provide shell access” is normal — SSH is only used for Git operations.
+            </p>
+
+            <hr class="margin-block-15">
+
+            <h3 class="size-h3">🌐 HTTPS-Only Git Access (no SSH)</h3>
+
+            <p>If you prefer not to use Cloudflared or SSH, clone repos using HTTPS.</p>
+
+            <h4 class="size-h4">1. Use the HTTPS Clone URL</h4>
+            <pre><code>https://git.jubnl.ch/USER/REPO.git</code></pre>
+
+            <h4 class="size-h4">2. Authenticate using your Forgejo credentials</h4>
+            <p>If 2FA is enabled, use an app password.</p>
+
+            <h4 class="size-h4">3. Example</h4>
+            <pre><code>git clone https://git.jubnl.ch/example/project.git</code></pre>
+
+            <hr class="margin-block-15">
+
+            <h3 class="size-h3">🛠 Troubleshooting SSH</h3>
+
+            <h4 class="size-h4">Cloudflared login doesn’t open a browser</h4>
+            <ul class="list list-gap-10">
               <li>Ensure Cloudflared is installed correctly</li>
-            <li>Try: <code>cloudflared login --url https://ssh-git.jubnl.ch</code></li>
-              <li>Disable VPN/WARP temporarily</li>
-              </ul>
-              
-              <h4 class="size-h4">SSH still asks for a password</h4>
-              <ul class="list list-gap-10">
-              <li>IdentityFile path is wrong</li>
-              <li>Your <code>ssh-git.jubnl.ch</code> block is missing <code>IdentitiesOnly yes</code></li>
+              <li>Try: <code>cloudflared login</code></li>
+              <li>Disable VPN / WARP temporarily</li>
+            </ul>
+
+            <h4 class="size-h4">SSH still asks for a password</h4>
+            <ul class="list list-gap-10">
+              <li>IdentityFile path is incorrect</li>
+              <li>Your config block must include <code>IdentitiesOnly yes</code></li>
               <li>Your public key is not added in Forgejo</li>
-              </ul>
-              
-              <h4 class="size-h4">SSH fails with TLS handshake errors</h4>
-              <ul class="list list-gap-10">
-              <li>DNS does not resolve to the Cloudflare Tunnel CNAME</li>
-              <li>Wrong hostname (ensure you're using <code>ssh-git.jubnl.ch</code>)</li>
-              <li>Local DNS resolver is caching old records</li>
-              </ul>
-              
-              <h4 class="size-h4">Access denied by Cloudflare</h4>
-              <ul class="list list-gap-10">
-              <li>Your email is not approved by me</li>
+            </ul>
+
+            <h4 class="size-h4">SSH fails with TLS handshake errors</h4>
+            <ul class="list list-gap-10">
+              <li>DNS is not resolving to the Cloudflare Tunnel CNAME</li>
+              <li>Wrong hostname (must be <code>ssh-git.jubnl.ch</code>)</li>
+              <li>Your DNS resolver cached old records</li>
+            </ul>
+
+            <h4 class="size-h4">Access denied by Cloudflare</h4>
+            <ul class="list list-gap-10">
+              <li>Your email is not approved in the Access policy</li>
               <li>Your Access token expired → run <code>cloudflared login</code> again</li>
-              <li>Device posture policies may block access</li>
-              </ul>
-              
-              <hr class="margin-block-15">
-              
-              <p>If you need access or something doesn’t work, contact me.</p>
+              <li>Device posture policies may block your device</li>
+            </ul>
+
+            <hr class="margin-block-15">
+
+            <p>If you need access or something doesn't work, contact me.</p>
